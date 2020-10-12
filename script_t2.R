@@ -1,4 +1,5 @@
 
+
 # teste t2
 
 # Dicas para definição do nome dos arquivos, variáveis e funções:
@@ -54,11 +55,7 @@ TRUE ~ "F"
 
 # Definir funções úteis que facilitem a reutilização do código 
 
-tabela <- function(x){
-  freq_abs <- table(x)
-  freq_rel <- prop.table(table(x))
-  return(c(freq_abs, freq_rel))
-}
+
 
 source("C:/Diretorio/Funções.R")
 
