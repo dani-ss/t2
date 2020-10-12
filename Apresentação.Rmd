@@ -44,7 +44,8 @@ rm(list = ls(all=T))
 
 * Porque?
 
-Isso previne que, caso haja alguma variável, função ou arquivo rodados anteriormente e que contenha o mesmo nome de alguma variável, função ou arquivo do programa em questão, o R não venha a utilizar esses objetos definidos em programas anteriores, ocasionando erro, muitas vezes, imperceptível, uma vez que o R não exibe mensagem de erro para essa situação, apenas roda o programa com os objetos definidos erroneamente.
+Isso previne que, caso haja alguma variável, função ou arquivo rodados anteriormente e que contenha o mesmo nome de alguma variável, função ou arquivo do programa em questão
+Esse erro é muitas vezes imperceptível uma vez que o R não exibe mensagem para essa situação, apenas roda o programa com os objetos definidos erroneamente.
 
 ## **Sumário**
 
