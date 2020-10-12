@@ -1,8 +1,278 @@
 ---
-title: "Trabalho 2"
-author: 'Alunos:'
-date: "12/10/2020"
-output: html_document
+title: "Boas práticas de programação no R"
+author: |
+  | Danielly Santos Severino
+  | Tales Pereira Rodigues
+  | Kelvyn Donavan
+date: "13/10/2020"
+output: 
+  html_document:
+    theme: yeti #default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, and yeti.
+    highlight: tango # default, tango, pygments, kate, monochrome, espresso, zenburn, haddock, breezedark, and textmate
+    toc: true
+    toc_depth: 5
+    toc_float: 
+      collapsed: true
+      smooth_scroll: true
 ---
 
+# **Introdução**
 
+Pretende-se, nesse trabalho, apresentar boas práticas de programação, especialmente em R, que, ao implementadas, tanto facilitam para o programador o entendimento do desenvolvimento do trabalho a ser entregue quanto agregam mais valor no produto final, de forma que o cliente terá um código muito mais organizado e fácil de se fazer possíveis reparos. Tais práticas são, em grande parte, de simples implementação e, muitas vezes, ignoradas por muitos programadores. 
+
+Serão apresentados, a seguir, organizados em forma de tópicos, os diversos aspectos da programação que podem ser otimizados para um melhor entendimento e desempenho do código. 
+
+# **Projetos**
+
+Aconselha-se criar um projeto para fazer o código do programa. Dessa forma, divide-se o trabalho em múltiplos ambientes, cada um com o seu diretório, documentos e workspace. 
+
+Pode-se criar um projeto em um novo diretório, e conjuntamente será criada uma pasta onde fizarão todos os arquivos. Também é possível definir um diretório offline no computador a ser usado.
+
+Além disso, através dessa ferramenta pode-se criar um diretório online (via Git), o que facilita, caso várias pessoas estejam trabalhando no programa, o acesso ao código atualizado após cada modificação feita pelos programadores.
+
+Mas atenção: Determinado script deve ser alterado em apenas 1 único computador por vez!
+
+# **Formas de organização geral**
+
+## **Memória**
+
+Inicialmente, recomenda-se sempre realizar a limpeza da memória de armazenamento antes de começar a rodar um novo código. Isso pode ser feito através do seguinte comando:
+
+```{r, eval=FALSE}
+rm(list = ls(all=T))
+```
+
+* Porque?
+
+Isso previne que, caso haja alguma variável, função ou arquivo rodados anteriormente e que contenha o mesmo nome de alguma variável, função ou arquivo do programa em questão, o R não venha a utilizar esses objetos definidos em programas anteriores, ocasionando erro, muitas vezes, imperceptível, uma vez que o R não exibe mensagem de erro para essa situação, apenas roda o programa com os objetos definidos erroneamente.
+
+## **Sumário**
+
+Outra ferramenta que também é significativamente importante para a organização, apresentação e localização de partes do código é o sumário. Isso pode ser feito facilmente acrescentando 4 `#` ou 4 `-` após o nome do tópico:
+
+```{r, eval=TRUE}
+##### teste 1 min=4 - ok ####
+# teste 2 min=4 - ok ---- 
+#### teste 3
+```
+
+## **Para deixar no início**
+
+Para tornar o código mais organizado recomenda-se carregar todos os pacotes utilizados no início do script. Aconselha-se, ainda, a definir todas as funções na parte inicial do código.
+
+# **Nomes**
+
+Agora, serão apresentadas algumas dicas para definição do nome dos arquivos, variáveis e funções.
+
+Inicialmente, não é recomendado usar acentuação ou letras maiúsculas nas nomeações, tanto de arquivos, como de variáveis e funções, uma vez que o R faz distinção com relação a tais elementos. Além disso, os nomes devem ser *significativos*.
+
+Os nomes de cada arquivo, função ou variável, devem sempre ser definidos de forma bastante intuitiva, de maneira tal que, outro programador possa ler e entender com certa facilidade o que cada um desses nomes quer dizer.
+
+## **Arquivos**
+
+Devem expressar de maneira resumida e concisa as informações contidas nos arquivos. Programas com arquivos nomeados de maneira muito genérica podem causar confusão na interpretação do programa.
+
+Exemplo:
+
+Suponha que você deseja fazer um script para o segundo trabalho de Pacotes. O nome desse script poderia ser "script_t2pacotes".
+
+## **Funções**
+
+Devem expressar a ideia das ações realizadas na função. Os nomes das funções são compostos por verbos, uma vez que funções representam ações a serem realizadas nas variáveis ou no banco de dados.
+
+Exemplo:
+
+Uma função que calcula a média aritimética de um conjunto de dados pode ser nomeada como “calcular_media”. Já uma função criada para calcular a variância poderia ser nomeada como "calcular_var".
+
+## **Variáveis**
+
+Devem expressar a ideia dos dados contidos nas variáveis, denominados substantivos, uma vez que buscam descrever um conjunto de dados.
+
+Exemplo:
+
+Um vetor contendo as idades dos alunos de certo local poderia ser nomeado como "idade".
+
+# **Indentação**
+
+Em muitas linguagens de programação, a indentação é obrigatória, um exemplo disso é o Python, que utiliza a indentação para definir onde começa e termina um bloco de código. O software R não nos obriga a isso, e funciona normalmente sem a indentação, porém é um boa prática para desenvolver um código limpo.
+
+Veja o exemplo a seguir:
+
+```{r, eval=FALSE}
+# Código sem indentação:
+
+for (i in 1:10)
+{if (i<5)
+{print("menor que 5")}
+else if(i==5)
+{print("igual a 5")}
+else
+{print("maior que 5")}
+}
+
+# Código com indentação:
+
+for (i in 1:10)
+{
+  if (i<5){
+    print("menor que 5")
+  }else if(i==5){
+    print("igual a 5")
+  }else{
+    print("maior que 5")
+  }
+}
+
+```
+
+Nesse exemplo, podemos perceber claramente, que a primeira chave fecha com a última, dando assim a ideia de que tudo entre essas duas chaves se trata de um bloco que será reproduzido dentro do loop `for`. De maneira análoga podemos olhar para as aberturas e fechamentos das demais chaves e entender que se trata de uma sentença interna aos comandos `if`, `else if` e `else` respectivamente.
+
+A indentação pode ser feita automaticamente ao programar no RStudio, alternativamente, pode-se selecionar com o mouse o trecho do código a ser identado e pressionar as teclas `Ctrl + i`.
+
+A boa prática de indentar está ligada diretamente a definição do numéro máximo de linhas no código. Para evitar linhas longas, que ultrapassam o limite de exibição no monitor, sugere-se que se limite o número máximo de caracteres na linha (80, por exemplo).
+
+Essas medidas conferem organização e mais clareza ao código.
+
+# **Comentários**
+
+Assim como a água é essencial para o funcionamento do nosso corpo, mas o excesso dela, pode trazer prejuízos a nossa saúde, de maneira similar, os comentários dentro de um código são importantes, mas precisam ser usados da maneira correta.
+
+A regra é simples, se é necessário comentar todo o código, significa que o código não é intuitivo, então, o mesmo não está tão bem estruturado.
+Uma vez que o código segue as regras de indentação, e utiliza nomes claros para as funções e variáveis, ele se torna auto explicativo. Assim, os comentários ficam para informações a parte do código, das quais se queira repassar para quando for necessário fazer uma manutenção no código, por exemplo.
+
+Se necessário, a maneira mais eficaz de utilizar-se dos comentários é fazer comentários concisos, curtos e explicativos. 
+
+# **Atalhos**
+
+O R possui uma série de atalhos úteis, o que economiza tempo na escrita do programa. Os principais atanhos são exibidos abaixo. Para ter acesso aos outros atalhos do r, basta, com o R aberto, teclar `Alt + Shift + k`.
+
+Exemplos:
+
+* `Crtl + I`: Indenta corretamente o código;
+
+* `Ctrl + Enter`: Executa a linha atual ou parte selecionada;
+
+* `Alt + Enter`: Executa o código sem mover o cursor para a próxima linha;
+
+* `Crtl + Alt + R`: Executa o código inteiro;
+
+* `Crtl + Alt + B`: Executa o código do início até a linha atual;
+
+* `Crtl + Alt + E`: Executa o código da linha atual até o final;
+
+* `ALT + -`: (`<-`) insere o sinal de atribuição;
+
+* `Ctrl + Shift + M`: (`%>%`) insere o operador pipe;
+
+* `Ctrl + Shift + C`: Comenta (ou retira comentários) as linhas selecionadas;
+
+* `Ctrl + 1`: altera cursor para o script;
+
+*	`Ctrl + 2`: altera cursor para o console;
+
+*	`Ctrl + ALT + i`: cria um chunk no R Markdown;
+
+*	`ALT + Shift + k`: janela com todos os atalhos disponíveis;
+
+*	`Ctrl + Shift + F10`: Reinicia o R;
+
+*	`Ctrl + .` : Procura pela função ou arquivo;
+
+* `Ctrl + Shift + Z`: Para refazer o que foi desfeito;
+
+* `Ctrl + Shift + N`: Abre um novo script.
+
+Para personalisar os comanandos: `Tools -> Modify Keyboard Shortcuts`
+
+# **Não reinventar a roda**
+
+Ao lidar com um problema certifique-se de que alguém já o tenha resolvido antes. Recomenda-se pesquisar as funções (e qualquer outra coisa) em inglês a fim de obter mais resultados na internet.
+
+Deve-se evitar criar funções por exemplo que já vêm prontas no R e que funcionam bem, uma vez que, essas gastam menos esforço e tempo computacional. 
+
+As pesquisas podem fornecer mais ferramentas e ideias para problemas posteriores!
+
+# **Reutilização**
+
+Se é algo que você sempre faz, tente criar métodos de reuso. Uma opção seria criar funções úteis.
+
+Supondo que uma tabela com frequências absoluta e relativa é muito frequentemente utilizada, pode-se criar uma função:
+
+```{r, eval=FALSE}
+tabela <- function(x){
+  freq_abs <- table(x)
+  freq_rel <- prop.table(table(x))
+  return(c(freq_abs, freq_rel))
+}
+```
+
+Pode-se, por exemplo, criar várias funções em um único arquivo e utilizá-lo quando precisar com o comando:
+
+```{r, eval=FALSE}
+sorce("C:/diretorio/funcoes.R")
+```
+
+Assim, todas as funções criadas no arquivo serão alocadas na memória atual e poderão ser utilizadas normalmente (como qualquer outra função já existente).
+
+Suponha, que no arquivo *funcoes.R* está definida a função `tabela` que retorna uma tabela com as frequências absoluta e relativa de um vetor. Então, para um vetor contendo os dados referentes a determinada variável (escolaridade, por exemplo) pode-se utilizar a função desejada com o comando:
+
+```{r, eval=FALSE}
+tabela(escolaridade)
+```
+
+# **Evitar**
+
+* Orienta-se evitar mudar diretamente a base de dados original, pois, caso venha a ser necessário o banco de dados original, ele estará intacto. Utilize um objeto especifico para atribuir os dados e fazer as modificações, respeitando a base original. 
+
+* Aconselha-se, evitar, sempre que possível, o uso de loops, especialmente o `for`, já que podem aumentar o esforço, memória e tempo computacional.
+
+* Segere-se não utilizar uma condição de negação dentro do comando `if`:
+
+```{r, eval=FALSE}
+if( !x == TRUE)
+```
+
+* Criar funções e mais funções dentro de uma única função. O mais ideal seria criar as funções separadamente e uni-lás posteriormente, tornando o código mais simples e compreensível.
+
+# **Programação funcional**
+
+Como uma alternativa aos loops, principalmente o `for`, serão apresentados alguns exemplos a seguir para otmizar os códigos R utilizando o pacote `purrr`.
+
+> "Usando PF podemos criar códigos mais concisos e “pipeáveis”, características que por tabela também tornam o processo de debug mais simples. Além disso, códigos funcionais geralmente são paralelizáveis, permitindo que tratemos problemas muito grandes com poucas modificações."
+
+Exemplo do site <http://material.curso-r.com/purrr/>:
+
+```{r, echo=TRUE}
+library(purrr)
+
+soma_um <- function(x) { x + 1 }
+obj <- 10:15
+
+for (i in seq_along(obj)) {
+  obj[i] <- soma_um(obj[i])
+}
+obj
+
+obj <- map(obj, soma_um)
+obj
+
+map_dbl(obj, soma_um)
+```
+
+# **Referências**
+
+Boas práticas de programação:
+
+<https://oestatistico.com.br/5-dicas-para-melhorar-seu-codigo-linguagem-r/>
+
+<https://www.devmedia.com.br/boas-praticas-de-programacao/21137>
+
+<https://medium.com/@mari_azevedo/tem-um-tempinho-para-conversarmos-sobre-boas-pr%C3%A1ticas-de-programa%C3%A7%C3%A3o-com-java-51c5bcc220ea>
+
+<https://imasters.com.br/desenvolvimento/boas-praticas-de-programacao-para-bons-devs>
+
+<http://www.devwilliam.com.br/extra/profissional/10-boas-praticas-de-programacao>
+
+PF: 
+
+<http://material.curso-r.com/purrr/>

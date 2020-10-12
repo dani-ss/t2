@@ -1,51 +1,33 @@
 
 
-# teste t2
+##### teste 1 min=4 - ok ####
+# teste 2 min=4 - ok ---- 
+#### teste 3
 
-# Dicas para definição do nome dos arquivos, variáveis e funções:
-# 1. Nome dos arquivos
-# 2. Nome das variáveis (substantivos)
-# 3. Nome das funções (verbos)
-  # Não colocar função dentro de função 
-
-
-
-
-#  Uso ideal dos comentários
-
-
-# Calculando a média
-calcular_media <-  function(x){}
-
-
-# Formas de organização geral do código
-
-  # limpar memória de armazenamento antes de começar a rodar um novo código
-  # criar sumário 
-
-##### Análise Descritiva #########
-
-
-# Alterações no Banco ----
-###############
-
-# Adicionar formas para criar sumário (fazer) ######
-
-  # carregar pacotes no início
-  # definir todas as funções na parte inicial do código
-  # limitar o o nº de caracteres na linha (pesquisar como automatizar) #######
 
 # Identar corretamente o código (atalho : Ctrl + i)
 
-codigo = dados %>%
-mutate(
-sexo = case_when(
-sexo == 0 ~ "M"
-TRUE ~ "F"
-)
-)
+codigo = dados %>% 
+  mutate()
 
-# Atalhos que podem ser úteis (fazer) #############
+codigo = dados %>%
+  mutate(
+    sexo = case_when(
+      sexo == 0 ~ "M"
+      TRUE ~ "F"
+    )
+  )
+
+# um codigo bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem  grande
+
+# um codigo bem bem bem bem bem bem bem bem bem bem bem bem bem bem 
+# bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem bem
+# bem bem bem bem bem bem bem bem  grande
+
+
+comentario 1
+comentario 2
+comentario 3
 
 
 # Usar funções já existentes que funcionam bem (não reinventar a roda)
